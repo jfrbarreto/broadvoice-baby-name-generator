@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import { Box } from '@mantine/core';
-import { TypographyProps } from './typography.types';
-import { useTypographyStyles } from './typography.styles';
+import React, { useMemo } from "react";
+import { Box } from "@mantine/core";
+import { TypographyProps } from "./typography.types";
+import { useTypographyStyles } from "./typography.styles";
 
 export function TypographyCore(props: TypographyProps) {
   const {
@@ -18,7 +18,7 @@ export function TypographyCore(props: TypographyProps) {
     capitalizeAll,
     capitalizeFirst,
     align,
-    onClick
+    onClick,
   } = props;
   const { classes } = useTypographyStyles({
     grey,
@@ -34,16 +34,24 @@ export function TypographyCore(props: TypographyProps) {
     capitalizeFirst,
     align,
     onClick,
-    children
+    children,
   });
 
   const text = useMemo(() => {
-    if (capitalizeFirst) return children.charAt(0).toUpperCase();
+    if (capitalizeFirst && children)
+      return (
+        children.charAt(0).toUpperCase() +
+        children.substring(1, children.length)
+      );
     return children;
   }, [children]);
 
   return (
-    <Box component={span ? 'span' : 'div'} onClick={onClick} className={classes.typography}>
+    <Box
+      component={span ? "span" : "div"}
+      onClick={onClick}
+      className={classes.typography}
+    >
       {text}
     </Box>
   );
