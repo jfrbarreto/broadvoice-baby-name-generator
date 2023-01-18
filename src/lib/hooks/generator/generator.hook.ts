@@ -1,6 +1,6 @@
 import { useBaseStore } from "@stores";
 import {
-  GenderIdentity,
+  // GenderIdentity,
   NullableDoubleStringArray,
   NullableString,
 } from "@types";
@@ -11,6 +11,8 @@ export function useGenerator() {
   const year_filter = useBaseStore((state) => state.year_filter);
   const ethnicities_filter = useBaseStore((state) => state.ethnicities_filter);
   const filter_type = useBaseStore((state) => state.filter_type);
+
+  const gender_identity = useBaseStore((state) => state.gender_identity);
 
   const set_name_to_display = useBaseStore(
     (state) => state.set_name_to_display
@@ -121,8 +123,8 @@ export function useGenerator() {
   //   console.log(l, sum);
   // };
 
-  const generate = (gender: GenderIdentity) => {
-    let resultArray = filterDoubleArray(raw_names, 1, gender);
+  const generate = () => {
+    let resultArray = filterDoubleArray(raw_names, 1, gender_identity);
     let nameToDisplay: string[] = [];
 
     if (year_filter && year_filter.length) {
