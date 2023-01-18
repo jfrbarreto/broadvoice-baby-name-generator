@@ -1,0 +1,40 @@
+{
+  "name": "broadvoice-baby-name-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
+    "prod": "webpack serve --config webpack.prod.js",
+    "ready": "npm run prettier && npm run eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mantine/core": "5.9.5",
+    "@mantine/hooks": "5.9.5",
+    "@tabler/icons": "1.119.0",
+    "immer": "9.0.16",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zustand": "4.1.5"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.10",
+    "@typescript-eslint/eslint-plugin": "5.47.1",
+    "@typescript-eslint/parser": "5.47.1",
+    "dotenv-webpack": "8.0.1",
+    "eslint": "8.30.0",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-react": "7.31.11",
+    "eslint-webpack-plugin": "3.2.0",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "5.5.0",
+    "prettier": "2.8.1",
+    "ts-loader": "9.4.2",
+    "typescript": "4.9.4",
+    "url-loader": "4.1.1",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
+  }
+}

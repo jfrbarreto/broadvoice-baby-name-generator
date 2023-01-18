@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "sourceMap": false,
+    "target": "es6",
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components": ["./src/app/components/@exports"],
+      "@views": ["./src/app/views/@exports"],
+      "@helpers": ["./src/lib/helpers/@exports"],
+      "@mocks": ["./src/lib/mocks/@exports"],
+      "@stores": ["./src/lib/stores/@exports"],
+      "@theme": ["./src/lib/theme/@exports"],
+      "@types": ["./src/lib/types/@exports"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
