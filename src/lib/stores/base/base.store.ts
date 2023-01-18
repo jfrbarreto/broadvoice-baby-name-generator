@@ -8,6 +8,7 @@ import {
   FilterType,
 } from "./base.types";
 import { Anything, GenderIdentity, NullableDoubleStringArray } from "@types";
+import { removeDuplicatesArray } from "../../helpers/removeDuplicatesArray/removeDuplicatesArray.logic";
 
 const initialState: BaseStoreState = {
   raw_names: null,
@@ -21,26 +22,22 @@ const initialState: BaseStoreState = {
 };
 
 const actions = (set: Anything): BaseStoreActions => {
-  const removeDuplicatesArray = (array: string[] | undefined) => {
-    return array?.filter((c, index) => {
-      return array.indexOf(c) === index;
-    });
-  };
-
   const set_raw_names = (n: NullableDoubleStringArray) =>
     set(
       produce((state: BaseStoreState) => {
-        const allYears = removeDuplicatesArray(
-          n?.map((name) => name[0])
-        )?.sort();
+        const normalizedRaw = n?.map((name) => {
+          return name.map((value) => value.toLowerCase());
+        }) as NullableDoubleStringArray;
 
-        console.log(allYears);
-
-        state.raw_names = n;
+        state.raw_names = normalizedRaw;
         state.available_years =
-          removeDuplicatesArray(n?.map((name) => name[0]))?.sort() || [];
+          removeDuplicatesArray(
+            normalizedRaw?.map((name) => name[0])
+          )?.sort() || [];
         state.available_ethnicities =
-          removeDuplicatesArray(n?.map((name) => name[2]))?.sort() || [];
+          removeDuplicatesArray(
+            normalizedRaw?.map((name) => name[2])
+          )?.sort() || [];
       }),
       false,
       "set_raw_names"

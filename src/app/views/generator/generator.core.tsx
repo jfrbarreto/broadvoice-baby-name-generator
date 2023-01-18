@@ -23,9 +23,9 @@ export function GeneratorCore() {
 
         <Space h={128} />
         <Composition row jBetween fullWidth>
-          <GenderButtonShard type={"FEMALE"} />
+          <GenderButtonShard type={"female"} />
           <Space w={32} />
-          <GenderButtonShard type={"MALE"} />
+          <GenderButtonShard type={"male"} />
         </Composition>
       </Composition>
     </Structure>

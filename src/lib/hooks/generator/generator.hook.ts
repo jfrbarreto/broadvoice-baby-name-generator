@@ -3,8 +3,8 @@ import {
   GenderIdentity,
   NullableDoubleStringArray,
   NullableString,
-  // NullableString,
 } from "@types";
+import { removeDuplicatesArray } from "@helpers";
 
 export function useGenerator() {
   const raw_names = useBaseStore((state) => state.raw_names);
@@ -15,6 +15,33 @@ export function useGenerator() {
   const set_name_to_display = useBaseStore(
     (state) => state.set_name_to_display
   );
+
+  const sumNames = (array: NullableDoubleStringArray) => {
+    const normalizedNames = removeDuplicatesArray(
+      array?.map((name) => name[3])
+    );
+
+    let sum: Record<string, number> = {};
+
+    array?.forEach((rawName) => {
+      normalizedNames?.forEach((normalizedName) => {
+        if (rawName[3] === normalizedName) {
+          sum = {
+            ...sum,
+            [normalizedName]:
+              (sum[normalizedName] ? sum[normalizedName] : 0) +
+              parseInt(rawName[4], 10),
+          };
+        }
+      });
+    });
+
+    const backToString = Object.entries(sum).map((entry) => {
+      return [entry[0], entry[1].toString()];
+    });
+
+    return sortDoubleArray(backToString, 1);
+  };
 
   const sortDoubleArray = (
     array: NullableDoubleStringArray,
@@ -106,8 +133,6 @@ export function useGenerator() {
       resultArray = filterDoubleArray(resultArray, 2, ethnicities_filter);
     }
 
-    // default
-
     switch (filter_type) {
       case "random":
         nameToDisplay = pickRandomItemFromDoubleArray(resultArray) as string[];
@@ -115,10 +140,13 @@ export function useGenerator() {
       case "iterate":
         nameToDisplay = iterateRandomOnDoubleArray(resultArray) as string[];
         break;
+      case "w-iterate":
+        console.log(sumNames(raw_names));
+        break;
     }
 
-    console.info(nameToDisplay);
     set_name_to_display(nameToDisplay);
+    console.info("name to display", nameToDisplay);
   };
   return { generate };
 }

@@ -3,7 +3,7 @@ import { Typography } from "@components";
 import React from "react";
 
 export function YearTypographyShard() {
-  const year = useBaseStore((state) => state.name_to_display[0]);
+  const year = useBaseStore((state) => state.name_to_display?.[0]);
 
   return (
     <>

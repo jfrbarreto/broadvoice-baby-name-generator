@@ -19,7 +19,7 @@ export function PickRadioShard() {
       >
         <Radio value="random" label="random" />
         <Radio value="iterate" label="iterate" />
-        {/*<Radio value="w-iterate" label="w-iterate" />*/}
+        <Radio value="w-iterate" label="w-iterate" />
       </Radio.Group>
     </Composition>
   );

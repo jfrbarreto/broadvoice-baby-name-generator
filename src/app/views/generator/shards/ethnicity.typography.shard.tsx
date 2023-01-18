@@ -3,7 +3,7 @@ import { Typography } from "@components";
 import React from "react";
 
 export function EthnicityTypographyShard() {
-  const ethnicity = useBaseStore((state) => state.name_to_display[2]);
+  const ethnicity = useBaseStore((state) => state.name_to_display?.[2]);
 
   return (
     <>
